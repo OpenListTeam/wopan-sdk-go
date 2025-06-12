@@ -3,7 +3,7 @@ package wopan_test
 import (
 	"testing"
 
-	"github.com/xhofe/wopan-sdk-go"
+	"github.com/OpenListTeam/wopan-sdk-go"
 )
 
 func TestCrypto_Decrypt(t *testing.T) {
