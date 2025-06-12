@@ -4,7 +4,7 @@
 ## Installation
 
 ```bash
-go get github.com/xhofe/wopan-sdk-go
+go get github.com/OpenListTeam/wopan-sdk-go
 ```
 
 ## Usage
@@ -13,18 +13,18 @@ go get github.com/xhofe/wopan-sdk-go
 package main
 
 import (
-	"fmt"
-	"github.com/xhofe/wopan-sdk-go"
+ "fmt"
+ "github.com/OpenListTeam/wopan-sdk-go"
 )
 
 func main() {
-	w := wopan.DefaultWithRefreshToken("91d4b946-xxxx-4909-bac1-d9914e45f2de")
-	res, err := w.AppQueryUser()
-	if err != nil {
-		fmt.Printf("AppQueryUser() error = %v", err)
-	} else {
-		fmt.Printf("AppQueryUser() = %+v", res)
-	}
+ w := wopan.DefaultWithRefreshToken("91d4b946-xxxx-4909-bac1-d9914e45f2de")
+ res, err := w.AppQueryUser()
+ if err != nil {
+  fmt.Printf("AppQueryUser() error = %v", err)
+ } else {
+  fmt.Printf("AppQueryUser() = %+v", res)
+ }
 }
 
 ```

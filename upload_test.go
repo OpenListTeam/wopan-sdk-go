@@ -4,7 +4,7 @@ import (
 	"os"
 	"testing"
 
-	"github.com/xhofe/wopan-sdk-go"
+	"github.com/OpenListTeam/wopan-sdk-go"
 )
 
 func TestWoClient_Upload2C(t *testing.T) {
