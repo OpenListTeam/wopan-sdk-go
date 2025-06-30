@@ -15,7 +15,7 @@ type File struct {
 }
 
 type QueryAllFilesData struct {
-	Files []*File `json:"files"`
+	Files []File `json:"files"`
 }
 
 func (w *WoClient) QueryAllFiles(spaceType, parentDirectoryId string, pageNum, pageSize int, sortRule int, familyId string, opts ...RestyOption) (*QueryAllFilesData, error) {
@@ -30,12 +30,6 @@ func (w *WoClient) QueryAllFiles(spaceType, parentDirectoryId string, pageNum, p
 	}
 	if spaceType == SpaceTypeFamily {
 		param["familyId"] = familyId
-	}
-	if spaceType == SpaceTypePrivate {
-		if w.psToken == "" {
-			return nil, ErrInvalidPsToken
-		}
-		param["psToken"] = w.psToken
 	}
 	_, err := w.RequestWoHome(KeyQueryAllFiles, param, JsonSecret, &resp, opts...)
 	if err != nil {
@@ -108,12 +102,6 @@ func (w *WoClient) CreateDirectory(spaceType, parentDirectoryId string, director
 		"directoryName":     directoryName,
 		"clientId":          DefaultClientID,
 	}
-	if spaceType == SpaceTypePrivate {
-		if w.psToken == "" {
-			return nil, ErrInvalidPsToken
-		}
-		param["psToken"] = w.psToken
-	}
 	_, err := w.RequestWoHome(KeyCreateDirectory, param, JsonSecret, &resp, opts...)
 	if err != nil {
 		return nil, err
@@ -138,12 +126,6 @@ func (w *WoClient) RenameFileOrDirectory(spaceType string, _type int, id string,
 	}
 	if spaceType == SpaceTypeFamily {
 		param["familyId"] = familyId
-	}
-	if spaceType == SpaceTypePrivate {
-		if w.psToken == "" {
-			return ErrInvalidPsToken
-		}
-		param["psToken"] = w.psToken
 	}
 	_, err := w.RequestWoHome(KeyRenameFileOrDirectory, param, JsonSecret, nil, opts...)
 	return err

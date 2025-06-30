@@ -12,7 +12,6 @@ import (
 type WoClient struct {
 	accessToken  string
 	refreshToken string
-	psToken      string
 
 	client            *resty.Client
 	crypto            *Crypto
@@ -53,13 +52,6 @@ func DefaultWithRefreshToken(refreshToken string) *WoClient {
 	return w
 }
 
-func DefaultWithAccessAndPsToken(refreshToken, psToken string) *WoClient {
-	w := Default()
-	w.SetAccessToken(refreshToken)
-	w.SetPsToken(psToken)
-	return w
-}
-
 func Default() *WoClient {
 	return New(WithUA(DefaultUA))
 }
@@ -83,10 +75,6 @@ func (w *WoClient) SetAccessToken(token string) {
 
 func (w *WoClient) SetRefreshToken(token string) {
 	w.refreshToken = token
-}
-
-func (w *WoClient) SetPsToken(psToken string) {
-	w.psToken = psToken
 }
 
 func (w *WoClient) GetToken() (string, string) {

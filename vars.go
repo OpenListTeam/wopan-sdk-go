@@ -14,5 +14,4 @@ var (
 
 var (
 	ErrInvalidAccessToken = errors.New("invalid access token")
-	ErrInvalidPsToken     = errors.New("invalid psToken")
 )

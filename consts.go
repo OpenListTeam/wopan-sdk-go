@@ -24,7 +24,6 @@ const (
 const (
 	SpaceTypePersonal = "0"
 	SpaceTypeFamily   = "1"
-	SpaceTypePrivate  = "4"
 )
 
 // api-user methods
@@ -56,7 +55,6 @@ const (
 	KeyDeleteFile              = "DeleteFile"
 	KeyEmptyRecycleData        = "EmptyRecycleData"
 	KeyUpload2C                = "upload2C"
-	KeyPrivateSpaceLogin       = "PrivateSpaceLogin"
 )
 
 const (
