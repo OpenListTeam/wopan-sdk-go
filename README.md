@@ -4,7 +4,7 @@
 ## Installation
 
 ```bash
-go get github.com/xhofe/wopan-sdk-go
+go get github.com/OpenListTeam/wopan-sdk-go
 ```
 
 ## Usage
@@ -14,7 +14,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/xhofe/wopan-sdk-go"
+	"github.com/OpenListTeam/wopan-sdk-go"
 )
 
 func main() {
