@@ -6,7 +6,7 @@ import (
 	"path"
 	"sync"
 
-	"github.com/go-resty/resty/v2"
+	"resty.dev/v3"
 )
 
 type WoClient struct {

@@ -5,7 +5,6 @@ import (
 	"fmt"
 	"io"
 	"math/rand"
-	"os"
 	"strconv"
 	"time"
 )
@@ -20,7 +19,7 @@ type Upload2COption struct {
 type Upload2CFile struct {
 	Name        string
 	Size        int64
-	Content     *os.File
+	Content     io.ReadSeeker
 	ContentType string
 }
 
@@ -131,7 +130,7 @@ func (w *WoClient) Upload2C(spaceType string, file Upload2CFile, targetDirId str
 func (w *WoClient) uploadPart(ctx context.Context, uploadURL string, file Upload2CFile, formData map[string]string, partIndex int64, partSize int64, resp *Upload2CResp) error {
 	req := w.NewRequest().
 		SetResult(resp).
-		ForceContentType("application/json;charset=UTF-8").
+		SetForceResponseContentType("application/json;charset=UTF-8").
 		SetHeaders(map[string]string{
 			"Origin":     "https://pan.wo.cn",
 			"Referer":    "https://pan.wo.cn/",

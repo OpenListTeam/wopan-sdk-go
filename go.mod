@@ -1,7 +1,7 @@
 module github.com/OpenListTeam/wopan-sdk-go
 
-go 1.20
+go 1.21
 
-require github.com/go-resty/resty/v2 v2.7.0
+require resty.dev/v3 v3.0.0-beta.3
 
-require golang.org/x/net v0.11.0 // indirect
+require golang.org/x/net v0.33.0 // indirect

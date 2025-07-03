@@ -33,35 +33,35 @@ func (w *WoClient) request(channel string, key string, param, other Json, resp i
 		return nil, err
 	}
 	if res.IsError() {
-		return res.Body(), fmt.Errorf("request failed with status: %s", res.Status())
+		return res.Bytes(), fmt.Errorf("request failed with status: %s", res.Status())
 	}
 	if _resp.Status != "200" {
-		return res.Body(), fmt.Errorf("request failed with status: %s, msg: %s", _resp.Status, _resp.Msg)
+		return res.Bytes(), fmt.Errorf("request failed with status: %s, msg: %s", _resp.Status, _resp.Msg)
 	}
 	if _resp.Rsp.RspCode != "0000" {
 		if channel != ChannelAPIUser && retry && _resp.Rsp.RspCode == "9999" {
 			err := w.RefreshToken()
 			if err != nil {
-				return res.Body(), err
+				return res.Bytes(), err
 			}
 			return w.request(channel, key, param, other, resp, false, opts...)
 		}
-		return res.Body(), fmt.Errorf("request failed with rsp_code: %s,rep_desc: %s", _resp.Rsp.RspCode, _resp.Rsp.RspDesc)
+		return res.Bytes(), fmt.Errorf("request failed with rsp_code: %s,rep_desc: %s", _resp.Rsp.RspCode, _resp.Rsp.RspDesc)
 	}
 	if resp != nil {
 		data := string(_resp.Rsp.Data)
 		if strings.HasSuffix(data, "\"") && strings.HasPrefix(data, "\"") {
 			data, err = w.crypto.Decrypt(data[1:len(data)-1], channel)
 			if err != nil {
-				return res.Body(), err
+				return res.Bytes(), err
 			}
 		}
 		err = w.jsonUnmarshalFunc([]byte(data), resp)
 		if err != nil {
-			return res.Body(), err
+			return res.Bytes(), err
 		}
 	}
-	return res.Body(), nil
+	return res.Bytes(), nil
 }
 
 func (w *WoClient) Request(channel string, key string, param, other Json, resp interface{}, opts ...RestyOption) ([]byte, error) {

@@ -3,7 +3,7 @@ package wopan
 import (
 	"net/http"
 
-	"github.com/go-resty/resty/v2"
+	"resty.dev/v3"
 )
 
 type Option func(w *WoClient)
